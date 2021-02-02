@@ -89,11 +89,11 @@
 Neo4J, InfoGrid
 ```
 
-![image-20200511142909459](media/Redis.assets/image-20200511142909459.png)
+![image-20200511142909459](media/Redis.assets/image-20200511142909459-1612256366187.png)
 
 ### 2.2、四者对比
 
-![image-20200511143325029](media/Redis.assets/image-20200511143325029.png)
+![image-20200511143325029](media/Redis.assets/image-20200511143325029-1612256366187.png)
 
 ## 3、Redis入门
 
@@ -116,7 +116,7 @@ Neo4J, InfoGrid
 
 [redis](https://redis.io/)
 
-![image-20200511190012817](media/Redis.assets/image-20200511190012817.png)
+![image-20200511190012817](media/Redis.assets/image-20200511190012817-1612256366187.png)
 
 
 
@@ -131,7 +131,7 @@ tar -zxvf redis-5.0.8.tar.gz
 cd redis-5.0.8/
 ```
 
-![image-20200511190610345](media/Redis.assets/image-20200511190610345.png)
+![image-20200511190610345](media/Redis.assets/image-20200511190610345-1612256366187.png)
 
 ```bash
 #基本的环境安装
@@ -146,36 +146,36 @@ make install
 
 redis默认安装路径`/usr/local/bin`
 
-![image-20200511195006347](media/Redis.assets/image-20200511195006347.png)
+![image-20200511195006347](media/Redis.assets/image-20200511195006347-1612256366187.png)
 
 修改`redis.conf`配置文件
 
-```shell
+```bash
 #/usr/local/bin目录下
 mkdir myconfig
 
 cp /opt/redis-5.0.8/redis.conf myconfig/
 ```
 
-![image-20200511195746554](media/Redis.assets/image-20200511195746554.png)
+![image-20200511195746554](media/Redis.assets/image-20200511195746554-1612256366187.png)
 
 ```bash
 vim redis.conf
 ```
 
-![image-20200511200011696](media/Redis.assets/image-20200511200011696.png)
+![image-20200511200011696](media/Redis.assets/image-20200511200011696-1612256366187.png)
 
 启动`redis`服务
 
-```shell
+```bash
 redis-server /usr/local/bin/myconfig/redis.conf 
 ```
 
-![image-20200511200213628](media/Redis.assets/image-20200511200213628.png)
+![image-20200511200213628](media/Redis.assets/image-20200511200213628-1612256366187.png)
 
 客户端连接
 
-```shell
+```bash
 [root@localhost bin]# redis-cli -p 6379
 127.0.0.1:6379> 
 127.0.0.1:6379> set name bzm
@@ -190,7 +190,7 @@ OK
 
 退出`redis`
 
-![image-20200511203729450](media/Redis.assets/image-20200511203729450.png)
+![image-20200511203729450](media/Redis.assets/image-20200511203729450-1612256366188.png)
 
 ### 3.3、测试性能
 
@@ -217,14 +217,14 @@ OK
 
 ==简单测试==
 
-```shell
+```bash
 # 测试： 100个并发连接100000请求
 redis-benchmark -h localhost -p 6379 -c 100 -n 100000
 ```
 
 ## 4、基本知识
 
-![image-20200512074958040](media/Redis.assets/image-20200512074958040.png)
+![image-20200512074958040](media/Redis.assets/image-20200512074958040-1612256366188.png)
 
 >   默认是16个数据库
 
@@ -252,7 +252,7 @@ OK
 OK
 ```
 
-```shell
+```bash
 127.0.0.1:6379> set name bzm
 OK
 127.0.0.1:6379> set age 18
@@ -270,7 +270,7 @@ OK
 
 ```
 
-```shell
+```bash
 127.0.0.1:6379[2]> set name bzm
 OK
 127.0.0.1:6379[2]> EXPIRE name 10		#设置过期
@@ -286,7 +286,7 @@ OK
 127.0.0.1:6379[2]> 
 ```
 
-```shell
+```bash
 127.0.0.1:6379> KEYS *
 1) "name"
 2) "age"
@@ -307,7 +307,7 @@ string
 
 ## 5、五大数据类型
 
-![image-20200512081634606](media/Redis.assets/image-20200512081634606.png)
+![image-20200512081634606](media/Redis.assets/image-20200512081634606-1612256366188.png)
 
 Redis是一-个开源( BSD许可)的,内存中的数据结构存储系统,它可以用作==数据库==、==缓存==和==消息中间件MQ==。它支持多种类型的数据结构,如字符串( strings)，散列( hashes)，列表(lists)，集合(sets)，有序集合( sorted sets )与范围查询,
 bitmaps，hyperloglogs和地理空间( geospatial )索引半径查询。Redis 内置了复制( replication) , LUA脚本( Lua
@@ -316,7 +316,7 @@ scripting)，LRU驱动事件( LRU eviction) , 务( transactions )和不同级别
 
 ### 5.1、String
 
-```shell
+```bash
 127.0.0.1:6379> set k1 v1
 OK
 127.0.0.1:6379> get k1
@@ -333,7 +333,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> set views 0
 OK
 127.0.0.1:6379> INCR views		#增加1
@@ -353,7 +353,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> INCRBY views 10		#指定步长
 (integer) 10
 127.0.0.1:6379> get views
@@ -366,7 +366,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> get k1
 "hello"
 127.0.0.1:6379> GETRANGE k1 1 3		#截取字符串
@@ -377,7 +377,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> set k2 abcdefg
 OK
 127.0.0.1:6379> SETRANGE k2 1 xx
@@ -388,7 +388,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> SETEX k3 30 hello	#设置k3,值为hello，30s过期
 OK
 127.0.0.1:6379> TTL k3
@@ -407,7 +407,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> MSET k1 v1 k2 v2 k3 v3		#同时设置多个值
 OK
 127.0.0.1:6379> KEYS *
@@ -430,7 +430,7 @@ OK
 
 ==对象==
 
-```shell
+```bash
 127.0.0.1:6379> mset user:1:name bzm user:1:age 18
 OK
 127.0.0.1:6379> mget user:1:name user:1:age
@@ -441,7 +441,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> GETSET db redis		#如果不存在值，返回null
 (nil)
 127.0.0.1:6379> GET db 
@@ -457,7 +457,7 @@ OK
 
 基本的数据类型,列表。
 
-```shell
+```bash
 127.0.0.1:6379> LPUSH list one		#左插
 (integer) 1
 127.0.0.1:6379> LPUSH list two
@@ -496,7 +496,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> LPUSH list v1
 (integer) 1
 127.0.0.1:6379> LPUSH list v2
@@ -519,7 +519,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> RPUSH list v1
 (integer) 1
 127.0.0.1:6379> RPUSH list v2
@@ -536,7 +536,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> LRANGE list 0 -1
 1) "v1"
 2) "v2"
@@ -558,7 +558,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> EXISTS list		#判断list是否存在
 (integer) 0
 127.0.0.1:6379> RPUSH list v1		
@@ -574,7 +574,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> LRANGE list 0 -1
 1) "v1"
 2) "v2"
@@ -610,7 +610,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> SADD list v1		#set集合中添加 
 (integer) 1
 127.0.0.1:6379> SADD list v2
@@ -642,7 +642,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> SRANDMEMBER list 	#随机抽选出一个元素
 "v4"
 127.0.0.1:6379> 
@@ -653,7 +653,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> SPOP list	#随机移除元素
 "v3"
 127.0.0.1:6379> SMEMBERS list
@@ -664,7 +664,7 @@ OK
 
 
 
-```shell
+```bash
 127.0.0.1:6379> SADD list hello1
 (integer) 1
 127.0.0.1:6379> SADD list hello2
@@ -714,7 +714,7 @@ OK
 -   命令入队。
 -   执行事务。（EXEC）
 
-```shell
+```bash
 127.0.0.1:6379> MULTI 		#开启事务
 OK
 #命令入队
@@ -736,7 +736,7 @@ QUEUED
 
 ==取消事务==
 
-```shell
+```bash
 127.0.0.1:6379> MULTI 		#开启事务
 OK
 #命令入队
@@ -759,7 +759,7 @@ OK
 
 ==编译型异常(代码有问题!命令有错! )，事务中所有的命令 都不会被执行!==
 
-```shell 
+```bash 
 127.0.0.1:6379> MULTI
 OK
 127.0.0.1:6379> set k1 v1 
@@ -779,7 +779,7 @@ QUEUED
 
 ==如果事务队列中存在语法性,那么执行命令的时候,其他命令是可以正常执行的,错误命令抛出异常!==
 
-```shell
+```bash
 127.0.0.1:6379> MULTI
 OK
 127.0.0.1:6379> set k1 v1
@@ -815,7 +815,7 @@ QUEUED
 
 **测试**
 
-```shell
+```bash
 127.0.0.1:6379> set money 100
 OK
 127.0.0.1:6379> set out 0
@@ -836,7 +836,7 @@ QUEUED
 
 测试多线程修改值,使用`watch`可以当做`redis`的乐观锁操作!
 
-```shell
+```bash
 127.0.0.1:6379> set m1 100
 OK
 127.0.0.1:6379> KEYS *
@@ -860,7 +860,7 @@ QUEUED
 
 
 
-```shell
+```bash
 127.0.0.1:6379> UNWATCH		#事务执行失败，先解锁
 OK
 127.0.0.1:6379> WATCH m1	#然后监视，最新的值
@@ -908,7 +908,7 @@ QUEUED
 
 [通过Jedis客户端连接不到redis](https://blog.csdn.net/ksdb0468473/article/details/52848608)
 
-![image-20200513120705725](media/Redis.assets/image-20200513120705725.png)
+![image-20200513120705725](media/Redis.assets/image-20200513120705725-1612256366188.png)
 
 
 
@@ -1060,7 +1060,7 @@ public class User implements Serializable {
 
 ==测试==
 
-![image-20200513194841853](media/Redis.assets/image-20200513194841853.png)
+![image-20200513194841853](media/Redis.assets/image-20200513194841853-1612256366188.png)
 
 ### 9.3、编写工具类
 
@@ -1074,21 +1074,21 @@ public class User implements Serializable {
 
 ### 单位
 
-![image-20200514092622468](media/Redis.assets/image-20200514092622468.png)
+![image-20200514092622468](media/Redis.assets/image-20200514092622468-1612256366188.png)
 
 >   unit单位大小不敏感
 
 ### 包含
 
-![image-20200514093017622](media/Redis.assets/image-20200514093017622.png)
+![image-20200514093017622](media/Redis.assets/image-20200514093017622-1612256366188.png)
 
 >    引入其他的配置文件
 
 ### 网络
 
-![image-20200514093332260](media/Redis.assets/image-20200514093332260.png)
+![image-20200514093332260](media/Redis.assets/image-20200514093332260-1612256366188.png)
 
-```shell
+```bash
 bind 127.0.0.1		#绑定ip，远程访问可以设置本机ip
 
 protected-mode yes		#保护模式
@@ -1098,9 +1098,9 @@ port 6379		#端口
 
 ### 通用
 
-![image-20200514094723204](media/Redis.assets/image-20200514094723204.png)
+![image-20200514094723204](media/Redis.assets/image-20200514094723204-1612256366188.png)
 
-```shell
+```bash
 daemonize yes		# 后台运行,默认是no
 
 pidfile /var/run/redis_6379.pid		#k如果以后台的方式运行，我们就需要指定一个pid 文件!
@@ -1123,11 +1123,11 @@ always-show-logo yes		#是否总是显示logo
 
 ### 快照
 
-![image-20200514104153032](media/Redis.assets/image-20200514104153032.png)
+![image-20200514104153032](media/Redis.assets/image-20200514104153032-1612256366188.png)
 
 >   持久化，在规定的时间内,执行了多少次操作,则会持久化到文件.rdb. aof
 
-```shell
+```bash
 #如果900s内， 如果至少有一个1 key进行了修改， 我们及进行持久化操作
 save 900 1
 #如果300s内， 如果至少有一个10 key进行了修改， 我们及进行持久化操作
@@ -1154,17 +1154,17 @@ dir ./			#rdb文件保存的目录
 
 ### 主从复制
 
-![image-20200514111709838](media/Redis.assets/image-20200514111709838.png)
+![image-20200514111709838](media/Redis.assets/image-20200514111709838-1612256366188.png)
 
 ### 安全
 
-![image-20200514111856195](media/Redis.assets/image-20200514111856195.png)
+![image-20200514111856195](media/Redis.assets/image-20200514111856195-1612256366188.png)
 
-```shell
+```bash
 requirepass  123456 		#设置密码
 ```
 
-```shell
+```bash
 192.168.200.40:6379> ping
 PONG
 192.168.200.40:6379> CONFIG GET requirepass		#获取redis的密码
@@ -1186,7 +1186,7 @@ OK
 
 ###  客户端
 
-![image-20200514121017446](media/Redis.assets/image-20200514121017446.png)
+![image-20200514121017446](media/Redis.assets/image-20200514121017446-1612256366188.png)
 
 ```bash
 maxclients 10000		#设置能连接上redis的最大客户端的数量
@@ -1195,7 +1195,7 @@ maxclients 10000		#设置能连接上redis的最大客户端的数量
 
 ### 内存管理
 
-![image-20200514121326804](media/Redis.assets/image-20200514121326804.png)
+![image-20200514121326804](media/Redis.assets/image-20200514121326804-1612256366188.png)
 
 ```bash
 maxmemory <bytes>		# redis 配置最大的内存容量
@@ -1214,7 +1214,7 @@ maxmemory-policy noeviction			#内存到达上限之后的处理策略
 
 ### AOF 模式
 
-![image-20200514121937493](media/Redis.assets/image-20200514121937493.png)
+![image-20200514121937493](media/Redis.assets/image-20200514121937493-1612256366188.png)
 
 ```bash
 appendonly no		#默认是不开启aof模式的，默认是使用rdb方式持久化的，在大部分所有的情况下，rdb完全够用!
@@ -1246,11 +1246,11 @@ appendfsync everysec		#每秒都同步一次
 
 `rdb`保存的文件是`dump.rdb`都是在我们的配置文件中快照中进行配置的!
 
-![image-20200514163111943](media/Redis.assets/image-20200514163111943.png)
+![image-20200514163111943](media/Redis.assets/image-20200514163111943-1612256366188.png)
 
 
 
-![image-20200514163356793](media/Redis.assets/image-20200514163356793.png)
+![image-20200514163356793](media/Redis.assets/image-20200514163356793-1612256366188.png)
 
 ==触发机制==
 
@@ -1258,7 +1258,7 @@ appendfsync everysec		#每秒都同步一次
 -   执行`flushall`命令,也会触发我们的`rdb`规则!
 -   退出`redis `,也会产生`rdb`文件!
 
-![image-20200514164817127](media/Redis.assets/image-20200514164817127.png)
+![image-20200514164817127](media/Redis.assets/image-20200514164817127-1612256366189.png)
 
 ==恢复rdb文件!==
 
@@ -1321,7 +1321,7 @@ dir ~/redis/
 
 ### 11.3、选择RDB还是AOF呢？
 
-![image-20200514181335161](media/Redis.assets/image-20200514181335161.png)
+![image-20200514181335161](media/Redis.assets/image-20200514181335161-1612256366189.png)
 
 >   当`RDB`与`AOF`两种方式都开启时，`Redis`会优先使用`AOF`日志来恢复数据，因为`AOF`保存的文件比`RDB`文件更完整。
 
@@ -1333,15 +1333,15 @@ dir ~/redis/
 
 >   `Redis` 通过 [PUBLISH](http://redis.readthedocs.org/en/latest/pub_sub/publish.html#publish) 、 [SUBSCRIBE](http://redis.readthedocs.org/en/latest/pub_sub/subscribe.html#subscribe) 等命令实现了订阅与发布模式， 这个功能提供两种信息机制， 分别是订阅/发布到频道和订阅/发布到模式。
 
-![image-20200514184136963](media/Redis.assets/image-20200514184136963.png)
+![image-20200514184136963](media/Redis.assets/image-20200514184136963-1612256366189.png)
 
 `Redis `的 [SUBSCRIBE](http://redis.readthedocs.org/en/latest/pub_sub/subscribe.html#subscribe) 命令可以让客户端订阅任意数量的频道， 每当有新信息发送到被订阅的频道时， 信息就会被发送给所有订阅指定频道的客户端。
 
-![image-20200514184748634](media/Redis.assets/image-20200514184748634.png)
+![image-20200514184748634](media/Redis.assets/image-20200514184748634-1612256366189.png)
 
 当有新消息通过 [PUBLISH](http://redis.readthedocs.org/en/latest/pub_sub/publish.html#publish) 命令发送给频道 `channel1` 时， 这个消息就会被发送给订阅它的三个客户端：
 
-![image-20200514184821876](media/Redis.assets/image-20200514184821876.png)
+![image-20200514184821876](media/Redis.assets/image-20200514184821876-1612256366189.png)
 
 
 
@@ -1369,14 +1369,14 @@ Reading messages... (press Ctrl-C to quit)
 
 ==发送端==
 
-```shell
+```bash
 192.168.200.40:6379> PUBLISH Bzm hello 		#发布一个信息，到Bzm频道
 (integer) 1
 ```
 
 **结果**
 
-![image-20200514190025886](media/Redis.assets/image-20200514190025886.png)
+![image-20200514190025886](media/Redis.assets/image-20200514190025886-1612256366189.png)
 
 
 
@@ -1409,7 +1409,7 @@ Reading messages... (press Ctrl-C to quit)
 
 >   一般来说 ,要将`Redis`运用于工程项目中，只使用一台`Redis`是万万不能的(宕机) 。
 
-![image-20200515081634651](media/Redis.assets/image-20200515081634651.png)
+![image-20200515081634651](media/Redis.assets/image-20200515081634651-1612256366189.png)
 
 ### 13.3、主从复制的操作
 
@@ -1468,7 +1468,7 @@ dbfilename dump6381.rdb
 
 启动连接`Redis`
 
-![image-20200515084325723](media/Redis.assets/image-20200515084325723.png)
+![image-20200515084325723](media/Redis.assets/image-20200515084325723-1612256366189.png)
 
 ==一主( 79)二从(80, 81 )==
 
@@ -1482,17 +1482,17 @@ OK
 
 配置文件配置，启动即生效。
 
-![image-20200515091558111](media/Redis.assets/image-20200515091558111.png)
+![image-20200515091558111](media/Redis.assets/image-20200515091558111-1612256366189.png)
 
 测试
 
-![image-20200515091847813](media/Redis.assets/image-20200515091847813.png)
+![image-20200515091847813](media/Redis.assets/image-20200515091847813-1612256366189.png)
 
-![image-20200515091916054](media/Redis.assets/image-20200515091916054.png)
+![image-20200515091916054](media/Redis.assets/image-20200515091916054-1612256366189.png)
 
 ==主机写，从机只能读==
 
-![image-20200515091955934](media/Redis.assets/image-20200515091955934.png)
+![image-20200515091955934](media/Redis.assets/image-20200515091955934-1612256366189.png)
 
 
 
@@ -1511,7 +1511,7 @@ OK
 
 >   `Redis 2.8` 以后提供了 `Redis Sentinel` **哨兵机制** 来解决这个问题。
 
-![image-20200515101019769](media/Redis.assets/image-20200515101019769.png)
+![image-20200515101019769](media/Redis.assets/image-20200515101019769-1612256366189.png)
 
 哨兵模式是一种特殊的模式，首先`Redis`提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。其原理是**哨兵通过发送命令，等待`Redis`服务器响应，从而监控运行的多个`Redis`实例。**
 
@@ -1525,7 +1525,7 @@ OK
 
 >   然而一个哨兵进程对`Redis`服务器进行监控，可能会出现问题，为此，我们可以使用多个哨兵进行监控。各个哨兵之间还会进行监控，这样就形成了多哨兵模式。
 
-![image-20200515101648543](media/Redis.assets/image-20200515101648543.png)
+![image-20200515101648543](media/Redis.assets/image-20200515101648543-1612256366189.png)
 
 ```markdown
 # 故障切换（failover）的过程。
@@ -1550,17 +1550,17 @@ sentinel auth-pass mymaster 123456
 
 进入`Redis`的安装目录的`src`目录,`redis-sentinel `启动哨兵
 
-![image-20200515103735471](media/Redis.assets/image-20200515103735471.png)
+![image-20200515103735471](media/Redis.assets/image-20200515103735471-1612256366189.png)
 
 >   如果`Master`节点断开了,这个时候就会从从机中随机选择一个服务器 ! ( 这里面有一一个`投票算法`! )
 
  **故障转移**
 
-![image-20200515104258686](media/Redis.assets/image-20200515104258686.png)
+![image-20200515104258686](media/Redis.assets/image-20200515104258686-1612256366189.png)
 
 ==6379恢复后==，依然只能是从机
 
-![image-20200515104659529](media/Redis.assets/image-20200515104659529.png)
+![image-20200515104659529](media/Redis.assets/image-20200515104659529-1612256366189.png)
 
 
 
